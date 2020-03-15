@@ -29,14 +29,14 @@ describe('User Controller', () => {
     it('should return status code 200 on success', async () => {
       expect(
         await controller.save(CreateUserDTO.examples.valid, response),
-      ).toEqual({
+      ).toMatchSnapshot({
         statusCode: HttpStatus.CREATED,
       });
     });
     it('should return status code 409 on malformed request (invalid DTO)', async () => {
       expect(
         await controller.save(CreateUserDTO.examples.invalid, response),
-      ).toEqual({
+      ).toMatchSnapshot({
         statusCode: HttpStatus.BAD_REQUEST,
       });
     });
@@ -46,7 +46,7 @@ describe('User Controller', () => {
 
       expect(
         await controller.save(CreateUserDTO.examples.valid, response),
-      ).toEqual({
+      ).toMatchSnapshot({
         statusCode: HttpStatus.CONFLICT,
       });
     });

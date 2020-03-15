@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`User Controller Save a User should return status code 200 on success 1`] = `
+Object {
+  "statusCode": 201,
+}
+`;
+
+exports[`User Controller Save a User should return status code 401 on email conflict  1`] = `
+Object {
+  "statusCode": 409,
+}
+`;
+
+exports[`User Controller Save a User should return status code 409 on malformed request (invalid DTO) 1`] = `
+Object {
+  "statusCode": 400,
+}
+`;

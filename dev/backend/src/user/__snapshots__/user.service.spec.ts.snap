@@ -1,0 +1,7 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserService Save a User should not save the same email twice 1`] = `409`;
+
+exports[`UserService Save a User should save a user 1`] = `201`;
+
+exports[`UserService Save a User should send a bad request on error 1`] = `400`;
