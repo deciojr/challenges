@@ -12,11 +12,10 @@ import { entityConfig } from './entity-metadata';
 import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
-  declarations: [AppComponent],
+  declarations: [],
   imports: [
     BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
+    StoreRouterConnectingModule.forRoot(),
     StoreModule.forRoot({}, {}),
     StoreDevtoolsModule.instrument({
       maxAge: 25,
@@ -24,6 +23,15 @@ import { HttpClientModule } from '@angular/common/http';
     }),
     EffectsModule.forRoot([]),
     EntityDataModule.forRoot(entityConfig),
+    StoreModule.forRoot(reducers, {
+      metaReducers,
+      runtimeChecks: {
+        strictStateSerializability: true,
+        strictActionSerializability: true,
+      },
+    }),
+    !environment.production ? StoreDevtoolsModule.instrument() : [],
+    CoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent],
