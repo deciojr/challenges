@@ -1,7 +1,8 @@
 import * as dotenv from 'dotenv';
+
 dotenv.config({ path: '../.env' });
 
-import { INestApplication, ValidationPipe } from '@nestjs/common';
+import { INestApplication, Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
@@ -43,13 +44,11 @@ async function bootstrap() {
 
   setupSwagger(app);
 
-  app = addToApp(
-    app,
-    new ValidationPipe({ disableErrorMessages: true }),
-    'pipe',
-    true,
-  );
+  app = addToApp(app, new ValidationPipe(), 'pipe', true);
+
+  Logger.log(`🚀  Listening on port ${process.env.SERVER_PORT}`);
 
   await app.listen(process.env.SERVER_PORT);
 }
+
 bootstrap();
