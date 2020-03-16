@@ -6,12 +6,16 @@ import { INestApplication, Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
+import * as helmet from 'helmet';
+import * as csurf from 'csurf';
+import * as cookieParser from 'cookie-parser';
+
 import { AppModule } from './app.module';
 
 const addToApp = (
   app: INestApplication,
   toUse,
-  type: 'pipe' | 'filter' | 'interceptor' | 'guard',
+  type: 'pipe' | 'filter' | 'interceptor' | 'guard' | 'middleware',
   global = false,
 ) => {
   if (global) {
@@ -46,6 +50,8 @@ async function bootstrap() {
   setupSwagger(app);
 
   app = addToApp(app, new ValidationPipe(), 'pipe', true);
+
+  app = addToApp(app, helmet(), 'middleware');
 
   Logger.log(`🚀  Listening on port ${process.env.SERVER_PORT}`);
 
