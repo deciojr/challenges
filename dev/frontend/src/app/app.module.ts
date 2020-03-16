@@ -10,6 +10,7 @@ import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 import { CoreModule } from '@core/core.module';
 import { JwtInterceptor } from '@core/interceptors';
+import { SharedModule } from '@shared/shared.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from '@core/containers';
 import { environment } from '@environment/environment';
