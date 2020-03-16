@@ -6,7 +6,7 @@ import * as bcrypt from 'bcrypt';
 @Entity({ name: 'users' })
 export class User extends Audit {
   @PrimaryGeneratedColumn('uuid')
-  uuid?: string;
+  id?: string;
 
   @Column()
   firstName: string;
@@ -17,7 +17,7 @@ export class User extends Audit {
   @Column({ unique: true })
   email: string;
 
-  @Column()
+  @Column({ select: false })
   password: string;
 
   @Column()
