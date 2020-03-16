@@ -17,7 +17,7 @@ export class User extends Audit {
   @Column({ unique: true })
   email: string;
 
-  @Column({ select: false })
+  @Column()
   password: string;
 
   @Column()
