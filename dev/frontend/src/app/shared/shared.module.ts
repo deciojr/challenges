@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 
 import { BootstrapModule } from '@shared/bootstrap/bootstrap.module';
-import { CardComponent } from './components/card/card.component';
+import { CardComponent } from '@shared/components';
 
 @NgModule({
   declarations: [CardComponent],
