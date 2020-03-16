@@ -123,10 +123,9 @@
         This field is required
       </div>
     </div>
-    <button class="btn btn-primary" type="submit" id="register-button" [disabled]="registerForm.invalid">
+    <app-button-with-loader classes="btn-primary" type="submit" [disable]="registerForm.invalid" [pending]="pending">
       Create account
-      <i class="fas fa-circle-notch fa-spin" *ngIf="pending"></i>
-    </button>
+    </app-button-with-loader>
   </form>
 
   <div class="px-3 pb-3" *ngIf="!!message">
