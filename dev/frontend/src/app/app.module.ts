@@ -1,3 +1,4 @@
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
@@ -8,7 +9,7 @@ import { EntityDataModule } from '@ngrx/data';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
 import { CoreModule } from '@core/core.module';
-import { SharedModule } from '@app/shared/shared.module';
+import { JwtInterceptor } from '@core/interceptors';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from '@core/containers';
 import { environment } from '@environment/environment';
@@ -40,7 +41,7 @@ import { reducers, metaReducers } from './reducers';
     SharedModule,
     AppRoutingModule,
   ],
-  providers: [],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
   bootstrap: [AppComponent],
 })
 export class AppModule extends HmrModule {}
