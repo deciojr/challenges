@@ -40,9 +40,3 @@ const registrationReducer = createReducer(
 export function reducer(state: State | undefined, action: Action) {
   return registrationReducer(state, action);
 }
-
-export const metaReducers: MetaReducer<State>[] = !environment.production ? [] : [];
-
-/**
- * Selectors
- */

@@ -18,9 +18,7 @@ import { RegistrationEffects } from './effects/registration.effects';
     CommonModule,
     SharedModule,
     RegistrationRoutingModule,
-    StoreModule.forFeature(fromRegistration.registrationFeatureKey, fromRegistration.reducer, {
-      metaReducers: fromRegistration.metaReducers,
-    }),
+    StoreModule.forFeature(fromRegistration.registrationFeatureKey, fromRegistration.reducer),
     EffectsModule.forFeature([RegistrationEffects]),
   ],
   providers: [RegistrationService],
