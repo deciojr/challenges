@@ -42,7 +42,7 @@ export class UserController {
     const statusCode = await this.userService.save(user);
 
     return response.send({
-      statusCode,
+      id: statusCode,
     });
   }
 }
