@@ -32,6 +32,7 @@
     "@ngrx/router-store": "^9.0.0",
     "@ngrx/store": "^9.0.0",
     "bootstrap": "^4.4.1",
+    "http-status-code": "^2.1.0",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
@@ -86,7 +87,7 @@
       "@app/(.*)": "<rootDir>/src/app/$1",
       "@core/(.*)": "<rootDir>/src/app/core/$1",
       "@shared/(.*)": "<rootDir>/src/app/shared/$1",
-      "@authentication/(.*)": "<rootDir>/src/app/authentication/$1",
+      "@registration/(.*)": "<rootDir>/src/app/registration/$1",
       "@environment": "<rootDir>/src/environments/environment"
     },
     "globals": {

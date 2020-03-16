@@ -15,7 +15,7 @@
     "lib": ["es2018", "dom"],
     "paths": {
       "@app/*": ["./src/app/*"],
-      "@authentication/*": ["./src/app/authentication/*"],
+      "@registration/*": ["./src/app/registration/*"],
       "@shared/*": ["./src/app/shared/*"],
       "@core/*": ["./src/app/core/*"],
       "@environment/*": ["./src/environments/*"]
