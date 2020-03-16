@@ -5,9 +5,7 @@ import { UserRepository } from './user.repository';
 
 @Injectable()
 export class UserService {
-  constructor(
-    @Inject(UserRepository) readonly userRepository: UserRepository,
-  ) {}
+  constructor(private readonly userRepository: UserRepository) {}
 
   async save(user: User): Promise<HttpStatus> {
     try {
