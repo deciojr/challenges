@@ -1,0 +1,4 @@
+<button class="btn" [ngClass]="classes" [type]="type" [disabled]="disable">
+  <ng-content></ng-content>
+  <i class="fas fa-circle-notch fa-spin" *ngIf="pending"></i>
+</button>
