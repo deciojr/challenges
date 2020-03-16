@@ -4,7 +4,7 @@ import { LoginPageComponent } from '@authentication/containers';
 
 const routes: Routes = [
   {
-    path: 'login',
+    path: '',
     component: LoginPageComponent,
   },
   {
