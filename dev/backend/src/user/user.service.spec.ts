@@ -20,20 +20,20 @@ describe('UserService', () => {
 
   describe('Save a User', () => {
     it('should save a user', async () => {
-      expect(await service.save(CreateUserDTO.examples.valid)).toMatchSnapshot(
+      expect(await service.save(CreateUserDTO.examples.valid)).toEqual(
         HttpStatus.CREATED,
       );
     });
 
     it('should not save the same email twice', async () => {
       await service.save(CreateUserDTO.examples.valid);
-      expect(await service.save(CreateUserDTO.examples.valid)).toMatchSnapshot(
+      expect(await service.save(CreateUserDTO.examples.valid)).toEqual(
         HttpStatus.CONFLICT,
       );
     });
 
     it('should send a bad request on error', async () => {
-      expect(await service.save(null)).toMatchSnapshot(HttpStatus.BAD_REQUEST);
+      expect(await service.save(null)).toEqual(HttpStatus.BAD_REQUEST);
     });
   });
 });
