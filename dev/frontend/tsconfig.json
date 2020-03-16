@@ -17,6 +17,7 @@
       "@app/*": ["./src/app/*"],
       "@registration/*": ["./src/app/registration/*"],
       "@authentication/*": ["./src/app/authentication/*"],
+      "@dashboard/*": ["./src/app/dashboard/*"],
       "@shared/*": ["./src/app/shared/*"],
       "@core/*": ["./src/app/core/*"],
       "@environment/*": ["./src/environments/*"]
