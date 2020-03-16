@@ -4,4 +4,5 @@ export enum HttpStatusCode {
   CREATED = 201,
   CONFLICT = 409,
   BAD_REQUEST = 400,
+  UNAUTHORIZED = 401,
 }
