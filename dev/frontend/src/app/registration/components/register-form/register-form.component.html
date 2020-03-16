@@ -1,0 +1,139 @@
+<app-card classes="bg-white" [shadow]="true">
+  <app-card classes="bg-light p-3">
+    <h4 class="font-weight-bold mb-0">REGISTER</h4>
+    <p>
+      Create your account to access the ONU Threats system
+    </p>
+    <p class="mb-0">Already have an account? <a routerLink="/login">Login</a></p>
+  </app-card>
+  <form [formGroup]="registerForm" class="p-3" (ngSubmit)="submit()">
+    <div class="form-group">
+      <label for="register-email">Email *</label>
+      <input
+        [class.is-invalid]="email.invalid && email.touched"
+        [class.is-valid]="email.valid"
+        class="form-control"
+        formControlName="email"
+        id="register-email"
+        type="email"
+      />
+      <div *ngIf="email.hasError('pattern')" class="invalid-feedback">
+        Email format is wrong
+      </div>
+      <div *ngIf="email.hasError('required')" class="invalid-feedback">
+        This field is required
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="register-first-name">First Name *</label>
+      <input
+        class="form-control"
+        formControlName="firstName"
+        id="register-first-name"
+        type="text"
+        [class.is-invalid]="firstName.invalid && firstName.touched"
+        [class.is-valid]="firstName.valid"
+      />
+      <div *ngIf="firstName.hasError('required')" class="invalid-feedback">
+        This field is required
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="register-last-name">Last Name *</label>
+      <input
+        class="form-control"
+        formControlName="lastName"
+        id="register-last-name"
+        type="text"
+        [class.is-invalid]="lastName.invalid && lastName.touched"
+        [class.is-valid]="lastName.valid"
+      />
+      <div *ngIf="lastName.hasError('required')" class="invalid-feedback">
+        This field is required
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="register-password">Password *</label>
+      <input
+        class="form-control"
+        formControlName="password"
+        id="register-password"
+        type="password"
+        [class.is-invalid]="password.invalid && password.touched"
+        [class.is-valid]="password.valid"
+      />
+      <div *ngIf="password.hasError('minlength')" class="invalid-feedback">
+        The minimum length is {{ passwordMinLength }} characters
+      </div>
+      <div *ngIf="password.hasError('required')" class="invalid-feedback">
+        This field is required
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="register-confirm-password">Confirm your password *</label>
+      <input
+        class="form-control"
+        formControlName="confirmPassword"
+        id="register-confirm-password"
+        type="password"
+        [class.is-invalid]="confirmPassword.invalid && confirmPassword.touched"
+        [class.is-valid]="confirmPassword.valid"
+      />
+      <div *ngIf="confirmPassword.hasError('required')" class="invalid-feedback">
+        This field is required
+      </div>
+      <div *ngIf="registerForm.hasError('mustMatch')" class="invalid-feedback">
+        Your password confirmation doesn't match
+      </div>
+    </div>
+    <app-card classes="bg-light p-3 mb-3">
+      <span>
+        💡 You will be asked your secret question when you try to change your password, make sure to remember it
+      </span>
+    </app-card>
+    <div class="form-group">
+      <label for="register-secret-question">Secret Question *</label>
+      <div class="input-group mb-3">
+        <input
+          class="form-control"
+          formControlName="secretQuestion"
+          id="register-secret-question"
+          type="text"
+          [class.is-invalid]="secretQuestion.invalid && secretQuestion.touched"
+          [class.is-valid]="secretQuestion.valid"
+        />
+        <div class="input-group-append">
+          <span class="input-group-text" id="basic-addon2">?</span>
+        </div>
+        <div *ngIf="secretQuestion.hasError('required')" class="invalid-feedback">
+          This field is required
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="register-secret-answer">Secret Answer *</label>
+      <input
+        class="form-control"
+        formControlName="secretAnswer"
+        id="register-secret-answer"
+        [class.is-invalid]="secretAnswer.invalid && secretAnswer.touched"
+        [class.is-valid]="secretAnswer.valid"
+      />
+      <div *ngIf="secretAnswer.hasError('required')" class="invalid-feedback">
+        This field is required
+      </div>
+    </div>
+    <app-button-with-loader classes="btn-primary" type="submit" [disable]="registerForm.invalid" [pending]="pending">
+      Create account
+    </app-button-with-loader>
+  </form>
+
+  <div class="px-3 pb-3" *ngIf="!!message">
+    <app-card classes="p-3 bg-light-green" *ngIf="!error">
+      <i class="fas fa-check mr-2 text-success"></i> {{ message }}
+    </app-card>
+    <app-card classes="p-3 bg-light-red" *ngIf="error">
+      <i class="fa fa-exclamation-triangle mr- 2 text-danger"></i> {{ message }}
+    </app-card>
+  </div>
+</app-card>

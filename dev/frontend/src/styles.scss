@@ -1,2 +1,34 @@
-/* You can add global styles to this file, and also import other style files */
-@import "~bootstrap/dist/css/bootstrap.css";
+@import url('https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap');
+@import '~bootstrap/dist/css/bootstrap.css';
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans',
+    sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+}
+
+label {
+  font-weight: bold;
+  text-transform: uppercase;
+  font-size: 0.9rem;
+  color: var(--gray);
+}
+
+.cursor-pointer {
+  cursor: pointer;
+}
+
+:root {
+  --light-red: #f9eeee;
+  --light-green: #e8f8f3;
+}
+
+.bg-light-red {
+  background: var(--light-red);
+}
+
+.bg-light-green {
+  background: var(--light-green);
+}

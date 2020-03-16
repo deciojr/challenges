@@ -1,0 +1,9 @@
+<div class="d-flex align-items-md-center h-100">
+  <div class="container">
+    <app-login-form
+      (login)="authenticate($event)"
+      [pending]="pending$ | async"
+      [error]="error$ | async"
+    ></app-login-form>
+  </div>
+</div>
