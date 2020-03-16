@@ -5,13 +5,13 @@ import { RegisterPageComponent } from '@registration/containers';
 
 const routes: Routes = [
   {
-    path: 'register',
+    path: '',
     component: RegisterPageComponent,
   },
   {
-    path: '',
+    path: '**',
     pathMatch: 'full',
-    redirectTo: 'register',
+    redirectTo: '',
   },
 ];
 
