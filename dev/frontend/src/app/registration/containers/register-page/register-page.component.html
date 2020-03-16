@@ -1,0 +1,10 @@
+<div class="d-flex align-items-md-center h-100">
+  <div class="container">
+    <app-register-form
+      (register)="saveRegistration($event)"
+      [pending]="pending$ | async"
+      [error]="error$ | async"
+      [message]="message$ | async"
+    ></app-register-form>
+  </div>
+</div>
