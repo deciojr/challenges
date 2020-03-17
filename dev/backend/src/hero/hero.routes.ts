@@ -5,5 +5,8 @@ export const heroRoutes: Routes = {
   swaggerTag: 'Hero',
   paths: {
     save: '',
+    list: '',
+    update: '/:id',
+    delete: '/:id',
   },
 };

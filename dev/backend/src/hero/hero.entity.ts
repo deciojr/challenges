@@ -25,6 +25,7 @@ export class Hero extends Audit {
   @Column({
     type: 'enum',
     enum: HeroClass,
+    name: 'hero_class',
   })
   @Index()
   heroClass: string;

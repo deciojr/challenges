@@ -1,5 +1,7 @@
 import { ConnectionOptions } from 'typeorm';
 
+import { SnakeNamingStrategy } from 'typeorm-naming-strategies';
+
 const config: ConnectionOptions = {
   type: 'postgres',
   host: process.env.POSTGRES_HOST,
@@ -11,6 +13,7 @@ const config: ConnectionOptions = {
   entities: [__dirname + '/**/*.entity{.ts,.js}'],
   synchronize: true,
   logging: true,
+  namingStrategy: new SnakeNamingStrategy(),
 };
 
 export = config;
