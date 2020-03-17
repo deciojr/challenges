@@ -2,16 +2,26 @@ import { EntityMetadataMap, EntityDataModuleConfig } from '@ngrx/data';
 
 export const entityNames = {
   user: 'User',
+  hero: 'Hero',
+};
+
+const defaultEntityDispatcherOptions = {
+  optimisticAdd: false,
+  optimisticSaveEntities: false,
+  optimisticDelete: false,
+  optimisticUpdate: false,
+  optimisticUpsert: false,
 };
 
 const entityMetadata: EntityMetadataMap = {
   User: {
     entityDispatcherOptions: {
-      optimisticAdd: false,
-      optimisticSaveEntities: false,
-      optimisticDelete: false,
-      optimisticUpdate: false,
-      optimisticUpsert: false,
+      ...defaultEntityDispatcherOptions,
+    },
+  },
+  Hero: {
+    entityDispatcherOptions: {
+      ...defaultEntityDispatcherOptions,
     },
   },
 };
