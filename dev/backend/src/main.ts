@@ -7,8 +7,6 @@ import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 import * as helmet from 'helmet';
-import * as csurf from 'csurf';
-import * as cookieParser from 'cookie-parser';
 
 import { AppModule } from './app.module';
 
