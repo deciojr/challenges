@@ -1,11 +1,20 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { NewHeroPageComponent } from '@dashboard/heroes/containers';
+
+import { ListHeroesPageComponent, NewHeroPageComponent, UpdateHeroPageComponent } from '@dashboard/heroes/containers';
 
 const routes: Routes = [
   {
+    path: '',
+    component: ListHeroesPageComponent,
+  },
+  {
     path: 'new',
     component: NewHeroPageComponent,
+  },
+  {
+    path: 'update/:id',
+    component: UpdateHeroPageComponent,
   },
 ];
 

@@ -26,7 +26,9 @@ const entityMetadata: EntityMetadataMap = {
   },
 };
 
-const pluralNames = {};
+const pluralNames = {
+  Hero: 'hero',
+};
 
 export const entityConfig: EntityDataModuleConfig = {
   entityMetadata,

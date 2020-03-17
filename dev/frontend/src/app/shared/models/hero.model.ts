@@ -7,4 +7,6 @@ export interface Hero {
   heroClass: HeroClass;
   lat: string;
   lng: string;
+  createdAt?: Date;
+  updatedAt?: Date;
 }

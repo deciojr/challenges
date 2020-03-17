@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HeroClass } from '@shared/models/hero-class.model';
 
 import { Hero } from '@shared/models/hero.model';
+import { heroClassesValues } from '@shared/util/hero-classes.util';
 
 @Component({
   selector: 'app-hero-form',
@@ -11,6 +12,9 @@ import { Hero } from '@shared/models/hero.model';
 })
 export class HeroFormComponent {
   @Input() set hero(hero: Hero) {
+    if (!!!hero) {
+      return;
+    }
     this.patchForm(hero);
   }
 
@@ -22,11 +26,13 @@ export class HeroFormComponent {
 
   @Input() message: string;
 
+  @Input() header: string;
+
   @Output() registerOrUpdate: EventEmitter<{ hero: Hero }> = new EventEmitter<{ hero: Hero }>();
 
   heroForm: FormGroup;
 
-  heroClasses = HeroClass;
+  heroClasses = heroClassesValues;
 
   constructor(private formBuilder: FormBuilder) {
     this.heroForm = this.formBuilder.group({
@@ -61,10 +67,6 @@ export class HeroFormComponent {
 
   get requiredAsterix() {
     return this.update ? '' : '*';
-  }
-
-  get classes(): string[] {
-    return Object.values(this.heroClasses);
   }
 
   get submitText() {

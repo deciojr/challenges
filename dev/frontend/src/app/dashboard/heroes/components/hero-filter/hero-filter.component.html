@@ -1,0 +1,31 @@
+<app-card class="bg-white">
+  <app-card classes="bg-light p-3" [shadow]="true">
+    <h4 class="font-weight-bold mb-0">Filters</h4>
+  </app-card>
+  <form class="p-3" [formGroup]="heroFilterForm" (ngSubmit)="submit()">
+    <div class="form-group">
+      <label for="hero-filter-name">Name</label>
+      <input class="form-control" formControlName="name" id="hero-filter-name" type="text" />
+    </div>
+    <div class="form-row">
+      <div class="col">
+        <div class="form-group">
+          <label for="hero-filter-badge">Badge</label>
+          <input class="form-control" formControlName="badge" id="hero-filter-badge" type="text" />
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <label for="hero-filter-class">Class</label>
+          <select class="form-control" name="" id="hero-filter-class" formControlName="heroClass">
+            <option value="">Any class</option>
+            <option [value]="c" *ngFor="let c of heroClasses">{{ c }}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <app-button-with-loader classes="btn-primary" type="submit" [pending]="pending">
+      Filter
+    </app-button-with-loader>
+  </form>
+</app-card>
