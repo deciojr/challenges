@@ -12,7 +12,6 @@ import * as fromHeroes from '@dashboard/heroes/reducers';
 @Component({
   selector: 'app-new-hero-page',
   templateUrl: './new-hero-page.component.html',
-  styleUrls: ['./new-hero-page.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class NewHeroPageComponent {
