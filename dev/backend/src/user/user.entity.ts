@@ -8,10 +8,10 @@ export class User extends Audit {
   @PrimaryGeneratedColumn('uuid')
   id?: string;
 
-  @Column()
+  @Column({ name: 'first_name' })
   firstName: string;
 
-  @Column()
+  @Column({ name: 'last_name' })
   lastName: string;
 
   @Column({ unique: true })
@@ -20,11 +20,11 @@ export class User extends Audit {
   @Column()
   password: string;
 
-  @Column()
+  @Column({ name: 'secret_question' })
   @Index()
   secretQuestion: string;
 
-  @Column()
+  @Column({ name: 'secret_answer' })
   @Index()
   secretAnswer: string;
 
