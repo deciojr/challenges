@@ -1,6 +1,5 @@
 import { Action, createReducer, MetaReducer, on } from '@ngrx/store';
 
-import { environment } from '@environment/environment';
 import { RegistrationApiActions, RegistrationPageActions } from '@registration/actions';
 
 import { User } from '@shared/models/user.model';
