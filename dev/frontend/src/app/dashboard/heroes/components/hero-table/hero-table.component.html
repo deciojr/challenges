@@ -1,0 +1,62 @@
+<app-card>
+  <app-card classes="bg-light p-3" [shadow]="true">
+    <div class="h4 d-flex justify-content-between align-items-center font-weight-bold mb-0">
+      Heroes <a routerLink="new"><span class="h6 btn btn-outline-secondary">Register a new hero</span></a>
+    </div>
+  </app-card>
+  <app-card classes="p-3 bg-light-red my-3">
+    💡 Be careful, the <strong>delete</strong> action cannot be undone
+  </app-card>
+  <table class="table table-hover align-middle">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Badge</th>
+        <th>Class</th>
+        <th>Latitude</th>
+        <th>Longitude</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngIf="!pending && heroes.length > 0">
+        <tr *ngFor="let hero of heroes; let i = index; trackBy: trackHeroes">
+          <td>{{ hero.name }}</td>
+          <td>{{ hero.badge }}</td>
+          <td>{{ hero.heroClass }}</td>
+          <td>{{ hero.lat }}</td>
+          <td>{{ hero.lng }}</td>
+          <td class="text-right">
+            <button class="btn text-success bg-light-green  mr-3" (click)="updateHero(hero)">Update</button>
+            <button class="btn text-danger bg-light-red" (click)="deleteHero(hero)">Delete</button>
+          </td>
+        </tr>
+      </ng-container>
+      <ng-container *ngIf="!pending && heroes.length === 0">
+        <tr>
+          <td class="text-center" colspan="6">
+            <h5 class="text-muted">No heroes registered yet</h5>
+          </td>
+        </tr>
+      </ng-container>
+      <ng-container *ngIf="pending">
+        <tr>
+          <td class="text-center" colspan="6">
+            <i class="fas fa-circle-notch fa-spin fa-2x text-muted"></i>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+  <div class="px-3 pb-3" *ngIf="!!message">
+    <app-card classes="p-3 bg-light-green" *ngIf="!error">
+      <i class="fas fa-check mr-2 text-success"></i> {{ message }}
+    </app-card>
+    <app-card classes="p-3 bg-light-red" *ngIf="error">
+      <i class="fa fa-exclamation-triangle mr- 2 text-danger"></i> {{ message }}
+    </app-card>
+  </div>
+  <app-card classes="p-3 bg-white text-center">
+    No pagination yet
+  </app-card>
+</app-card>

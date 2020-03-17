@@ -1,0 +1,10 @@
+<app-hero-form
+  (registerOrUpdate)="saveHero($event)"
+  [update]="true"
+  [pending]="pending$ | async"
+  [error]="error$ | async"
+  [message]="message$ | async"
+  [hero]="hero$ | async"
+  header="Hero details"
+>
+</app-hero-form>

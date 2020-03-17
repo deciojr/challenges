@@ -1,0 +1,79 @@
+import { HttpStatus, Injectable, Logger } from '@nestjs/common';
+
+import { ListHeroDTO } from './dto/list-hero.dto';
+import { Hero } from './hero.entity';
+import { HeroRepository } from './hero.repository';
+import { QueryParams } from './model/query-params.model';
+
+@Injectable()
+export class HeroService {
+  constructor(private readonly heroRepository: HeroRepository) {}
+
+  async save(hero: Hero): Promise<HttpStatus> {
+    try {
+      const isBadgeRegistered = (await this.countByBadge(hero.badge)) > 0;
+      if (isBadgeRegistered) {
+        return HttpStatus.CONFLICT;
+      }
+      await this.heroRepository.save(hero);
+      return HttpStatus.CREATED;
+    } catch (e) {
+      return HttpStatus.BAD_REQUEST;
+    }
+  }
+
+  async update(hero: Hero): Promise<HttpStatus> {
+    Logger.log(hero);
+    try {
+      await this.heroRepository.save({ ...hero });
+      return HttpStatus.OK;
+    } catch (e) {
+      return HttpStatus.BAD_REQUEST;
+    }
+  }
+
+  async delete(id): Promise<HttpStatus> {
+    try {
+      await this.heroRepository.delete({ id });
+      return HttpStatus.OK;
+    } catch (e) {
+      return HttpStatus.BAD_REQUEST;
+    }
+  }
+
+  private async countByBadge(badge: string) {
+    return await this.heroRepository.count({
+      badge,
+    });
+  }
+
+  async list(query: QueryParams): Promise<ListHeroDTO[]> {
+    const addLikeSuffix = (param: string) => `${param}%`;
+
+    const addToQuery = (param: string) => !!param;
+
+    const queryBuilder = this.heroRepository.createQueryBuilder('hero');
+
+    queryBuilder.select();
+
+    if (addToQuery(query.name)) {
+      queryBuilder.orWhere('hero.name ilike :name', {
+        name: addLikeSuffix(query.name),
+      });
+    }
+
+    if (addToQuery(query.badge)) {
+      queryBuilder.orWhere('hero.badge ilike :badge', {
+        badge: addLikeSuffix(query.badge),
+      });
+    }
+
+    if (addToQuery(query.heroClass)) {
+      queryBuilder.orWhere(`hero.hero_class = :heroClass`, {
+        heroClass: addLikeSuffix(query.heroClass),
+      });
+    }
+
+    return (await queryBuilder.getMany()) as ListHeroDTO[];
+  }
+}

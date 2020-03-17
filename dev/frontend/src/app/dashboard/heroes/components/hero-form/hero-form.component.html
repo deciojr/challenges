@@ -1,0 +1,106 @@
+<app-card class="bg-white">
+  <app-card classes="bg-light p-3" [shadow]="true">
+    <h4 class="font-weight-bold mb-0">{{ header }}</h4>
+  </app-card>
+  <form class="p-3" [formGroup]="heroForm" (ngSubmit)="submit()">
+    <div class="form-group">
+      <label for="hero-name">Name {{ requiredAsterix }}</label>
+      <input
+        [class.is-invalid]="name.invalid && name.touched"
+        [class.is-valid]="name.valid && !update"
+        class="form-control"
+        formControlName="name"
+        id="hero-name"
+        type="text"
+      />
+      <div *ngIf="name.hasError('required')" class="invalid-feedback">
+        This field is required
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="col">
+        <div class="form-group">
+          <label for="hero-badge">Badge {{ requiredAsterix }}</label>
+          <input
+            [class.is-invalid]="badge.invalid && badge.touched"
+            [class.is-valid]="badge.valid && !update"
+            class="form-control"
+            formControlName="badge"
+            id="hero-badge"
+            type="text"
+          />
+          <div *ngIf="name.hasError('required')" class="invalid-feedback">
+            This field is required
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <label for="hero-class">Class {{ requiredAsterix }}</label>
+          <select
+            class="form-control"
+            name=""
+            id="hero-class"
+            formControlName="heroClass"
+            [class.is-invalid]="heroClass.invalid && heroClass.touched"
+            [class.is-valid]="heroClass.valid && !update"
+          >
+            <option value="">Pick a class</option>
+            <option [value]="c" *ngFor="let c of heroClasses">{{ c }}</option>
+          </select>
+          <div *ngIf="heroClass.hasError('required')" class="invalid-feedback">
+            This field is required
+          </div>
+        </div>
+      </div>
+    </div>
+    <app-card classes="p-3 bg-white">
+      💡 Specify where the hero is located so that he can be allocated to closer threats
+    </app-card>
+    <div class="form-row mt-3">
+      <div class="col">
+        <div class="form-group">
+          <label for="hero-lat">Latitude {{ requiredAsterix }}</label>
+          <input
+            [class.is-invalid]="lat.invalid && lat.touched"
+            [class.is-valid]="lat.valid && !update"
+            class="form-control"
+            formControlName="lat"
+            id="hero-lat"
+            type="text"
+          />
+          <div *ngIf="lat.hasError('required')" class="invalid-feedback">
+            This field is required
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <label for="hero-lng">Longitude {{ requiredAsterix }}</label>
+          <input
+            [class.is-invalid]="lng.invalid && lng.touched"
+            [class.is-valid]="lng.valid && !update"
+            class="form-control"
+            formControlName="lng"
+            id="hero-lng"
+            type="text"
+          />
+          <div *ngIf="lat.hasError('required')" class="invalid-feedback">
+            This field is required
+          </div>
+        </div>
+      </div>
+    </div>
+    <app-button-with-loader classes="btn-primary" type="submit" [disable]="heroForm.invalid" [pending]="pending">
+      {{ submitText }}
+    </app-button-with-loader>
+  </form>
+  <div class="px-3 pb-3" *ngIf="!!message">
+    <app-card classes="p-3 bg-light-green" *ngIf="!error">
+      <i class="fas fa-check mr-2 text-success"></i> {{ message }}
+    </app-card>
+    <app-card classes="p-3 bg-light-red" *ngIf="error">
+      <i class="fa fa-exclamation-triangle mr- 2 text-danger"></i> {{ message }}
+    </app-card>
+  </div>
+</app-card>

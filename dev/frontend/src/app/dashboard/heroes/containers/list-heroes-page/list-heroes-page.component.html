@@ -1,0 +1,9 @@
+<app-hero-filter (filter)="getHeroes($event)" [pending]="pending$ | async"></app-hero-filter>
+<app-hero-table
+  [heroes]="heroes$ | async"
+  [pending]="pending$ | async"
+  [error]="error$ | async"
+  [message]="message$ | async"
+  (update)="update($event)"
+  (delete)="delete($event)"
+></app-hero-table>

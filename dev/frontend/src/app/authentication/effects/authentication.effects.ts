@@ -1,8 +1,9 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
-import { map, switchMap, take, tap } from 'rxjs/operators';
+import { map, switchMap, tap } from 'rxjs/operators';
 
 import { LoginActions, LoginApiActions } from '@authentication/actions';
 import { AuthenticationService } from '@authentication/services/authentication.service';
@@ -33,10 +34,15 @@ export class AuthenticationEffects {
       return this.actions$.pipe(
         ofType(LoginApiActions.loginSuccess),
         tap(action => this.authenticationService.saveAccessToken(action.accessToken)),
+        tap(() => this.router.navigate(['/'])),
       );
     },
     { dispatch: false },
   );
 
-  constructor(private actions$: Actions, private authenticationService: AuthenticationService) {}
+  constructor(
+    private actions$: Actions,
+    private authenticationService: AuthenticationService,
+    private router: Router,
+  ) {}
 }

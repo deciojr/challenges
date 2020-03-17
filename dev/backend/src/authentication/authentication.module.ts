@@ -14,12 +14,10 @@ import { JwtStrategy } from './strategy/jwt.strategy';
     PassportModule,
     JwtModule.register({
       secret: process.env.JWT_SECRET,
-      signOptions: {
-        expiresIn: process.env.JWT_EXPIRES_IN,
-      },
     }),
   ],
   controllers: [AuthenticationController],
   providers: [AuthenticationService, JwtStrategy, RenewJwtMiddleware],
+  exports: [AuthenticationService, RenewJwtMiddleware],
 })
 export class AuthenticationModule {}
