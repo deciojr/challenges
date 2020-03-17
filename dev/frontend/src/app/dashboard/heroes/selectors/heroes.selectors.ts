@@ -9,5 +9,3 @@ export const selectHeroesState = createFeatureSelector<fromHeroes.State>(fromHer
 export const selectHeroesMessage = createSelector(selectHeroesState, state => state.message);
 
 export const selectHeroesError = createSelector(selectHeroesState, state => state.error);
-
-export const selectHeroFromRouter = createSelector(fromRoot.selectRouteData, state => state.hero);
