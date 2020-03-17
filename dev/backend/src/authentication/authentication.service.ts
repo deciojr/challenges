@@ -43,9 +43,24 @@ export class AuthenticationService {
       return { statusCode: HttpStatus.UNAUTHORIZED };
     }
 
-    const payload = { sub: user.id };
+    const payload = this.getJwtPayloadFromUser(user);
+
     return {
-      accessToken: this.jwtService.sign(payload),
+      accessToken: this.getAccessToken(payload),
     };
+  }
+
+  getJwtPayloadFromUser(user: User) {
+    return {
+      sub: user.id,
+    };
+  }
+
+  getAccessToken(payload) {
+    return this.jwtService.sign(payload);
+  }
+
+  async verifyAccessToken(jwt: string) {
+    return await this.jwtService.verify(jwt, {});
   }
 }
