@@ -4,7 +4,7 @@ import { Audit } from '../shared/model/audit.model';
 
 export enum HeroClass {
   S = 'S',
-  A = ' A',
+  A = 'A',
   B = 'B',
   C = 'C',
 }
