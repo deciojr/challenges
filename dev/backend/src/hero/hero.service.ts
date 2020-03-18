@@ -84,4 +84,10 @@ export class HeroService {
 
     return (await queryBuilder.getMany()) as ListHeroDTO[];
   }
+  async allocateHero(hero: Hero, allocated: boolean) {
+    await this.save({
+      ...hero,
+      allocated,
+    });
+  }
 }
