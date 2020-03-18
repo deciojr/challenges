@@ -74,6 +74,14 @@ export class HeroService {
       });
     }
 
+    if (addToQuery(query.allocated)) {
+      queryBuilder.orWhere(`hero.allocated = :allocated`, {
+        allocated: query.allocated,
+      });
+    }
+
+    queryBuilder.addOrderBy('hero_class', 'DESC');
+
     return (await queryBuilder.getMany()) as ListHeroDTO[];
   }
 }
