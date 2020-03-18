@@ -1,7 +1,8 @@
 import { HttpStatus, Injectable, Logger } from '@nestjs/common';
 
+import { addLikeSuffix, addToQuery } from '../shared/util/query.util';
 import { ListHeroDTO } from './dto/list-hero.dto';
-import { Hero } from './hero.entity';
+import { Hero, HeroClass } from './hero.entity';
 import { HeroRepository } from './hero.repository';
 import { QueryParams } from './model/query-params.model';
 
@@ -48,13 +49,7 @@ export class HeroService {
   }
 
   async list(query: QueryParams): Promise<ListHeroDTO[]> {
-    const addLikeSuffix = (param: string) => `${param}%`;
-
-    const addToQuery = (param: string) => !!param;
-
     const queryBuilder = this.heroRepository.createQueryBuilder('hero');
-
-    queryBuilder.select();
 
     if (addToQuery(query.name)) {
       queryBuilder.orWhere('hero.name ilike :name', {
