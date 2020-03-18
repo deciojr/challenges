@@ -30,9 +30,18 @@ export class Hero extends Audit {
   @Index()
   heroClass: string;
 
-  @Column()
-  lat: string;
+  @Column({
+    type: 'numeric',
+  })
+  lat: number;
 
-  @Column()
-  lng: string;
+  @Column({
+    type: 'numeric',
+  })
+  lng: number;
+
+  @Column({
+    nullable: true,
+  })
+  allocated = false;
 }

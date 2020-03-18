@@ -20,12 +20,23 @@ export class UpdateHeroDTO implements Readonly<DTO<UpdateHeroDTO>> {
   heroClass: string;
 
   @ApiProperty()
-  lat: string;
+  lat: number;
 
   @ApiProperty()
-  lng: string;
+  lng: number;
 
-  static toHero({ id, name, badge, heroClass, lat, lng }: UpdateHeroDTO) {
+  @ApiProperty()
+  allocated: boolean;
+
+  static toHero({
+    id,
+    name,
+    badge,
+    heroClass,
+    lat,
+    lng,
+    allocated,
+  }: UpdateHeroDTO) {
     const hero = new Hero();
 
     hero.id = id;
@@ -34,6 +45,7 @@ export class UpdateHeroDTO implements Readonly<DTO<UpdateHeroDTO>> {
     hero.heroClass = heroClass;
     hero.lat = lat;
     hero.lng = lng;
+    hero.allocated = allocated;
 
     return hero;
   }

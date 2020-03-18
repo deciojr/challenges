@@ -17,11 +17,14 @@ export class ListHeroDTO implements Readonly<DTO<ListHeroDTO>> {
   @ApiProperty({ type: 'enum', enum: HeroClass })
   heroClass: HeroClass;
 
-  @ApiProperty({ type: 'string' })
-  lat: string;
+  @ApiProperty()
+  lat: number;
 
   @ApiProperty()
-  lng: string;
+  lng: number;
+
+  @ApiProperty()
+  allocated: boolean;
 
   @ApiProperty()
   createdAt: Date;
