@@ -33,6 +33,7 @@
     "@ngrx/store": "^9.0.0",
     "bootstrap": "^4.4.1",
     "http-status-code": "^2.1.0",
+    "ngx-socket-io": "^3.0.1",
     "rxjs": "~6.5.4",
     "tslib": "^1.10.0",
     "zone.js": "~0.10.2"
