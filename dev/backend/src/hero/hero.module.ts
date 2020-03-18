@@ -11,6 +11,7 @@ import { HeroService } from './hero.service';
   imports: [AuthenticationModule, TypeOrmModule.forFeature([Hero])],
   controllers: [HeroController],
   providers: [HeroService],
+  exports: [HeroService],
 })
 export class HeroModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
