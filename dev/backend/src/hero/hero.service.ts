@@ -84,10 +84,35 @@ export class HeroService {
 
     return (await queryBuilder.getMany()) as ListHeroDTO[];
   }
+
   async allocateHero(hero: Hero, allocated: boolean) {
     await this.save({
       ...hero,
       allocated,
     });
+  }
+
+  async randomHero(): Promise<Hero> {
+    const numberOfHeroes = await this.heroRepository.count();
+    const randomIntUpTo3 = () => Math.floor(Math.random() * Math.floor(3));
+    const classes: HeroClass[] = [
+      HeroClass.S,
+      HeroClass.A,
+      HeroClass.B,
+      HeroClass.C,
+    ];
+
+    const randomHero = {
+      name: `Random hero ${numberOfHeroes}`,
+      badge: `Badge ${numberOfHeroes}`,
+      heroClass: classes[randomIntUpTo3()],
+      allocated: true,
+      lng: -35.276692499999996,
+      lat: -5.9259319999999995,
+    };
+
+    await this.save(randomHero);
+
+    return randomHero;
   }
 }
