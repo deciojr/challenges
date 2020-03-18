@@ -43,5 +43,5 @@ export class Hero extends Audit {
   @Column({
     nullable: true,
   })
-  allocated = false;
+  allocated: boolean = false;
 }
