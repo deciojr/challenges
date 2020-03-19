@@ -1,14 +1,14 @@
 ## Sumário
 
 - ### [Decisões](#decisões)
-      	- #### [Backend](#backend)
-      	- #### [Frontend](#frontend)
-      	- #### [Testes](#testes)
-      	- #### [Commits](#commits)
+- [Backend](#backend)
+- [Frontend](#frontend)
+- [Testes](#testes)
+- [Commits](#commits)
 - ### [Como rodar o projeto](#decisões)
-      	- ###	[Pré-requisitos](#pré-requisitos)
-      	- ### [Frontend](#frontend)
-      	- ### [Backend](#backend)
+- [Pré-requisitos](#pré-requisitos)
+- [Frontend](#frontend)
+- [Backend](#backend)
 - ### [Observações finais](#observações-finais)
 
 ## Decisões
