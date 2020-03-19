@@ -1,0 +1,56 @@
+<app-card>
+  <app-card classes="bg-light p-3" [shadow]="true">
+    <div class="h4 d-flex justify-content-between align-items-center font-weight-bold mb-0">
+      Threats
+    </div>
+  </app-card>
+  <table class="table table-hover align-middle">
+    <thead>
+      <tr>
+        <th>Monster name</th>
+        <th>Danger level</th>
+        <th>Defeated by</th>
+        <th>Latitude</th>
+        <th>Longitude</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngIf="!pending && threats.length > 0">
+        <tr *ngFor="let threat of threats; let i = index; trackBy: trackThreats">
+          <td>{{ threat.monsterName }}</td>
+          <td>{{ threat.dangerLevel }}</td>
+          <td>
+            <a
+              class="btn bg-light-green"
+              [routerLink]="['/dashboard/heroes/update', threat.heroId]"
+              title="Click to see this hero details"
+            >
+              {{ threat.heroName }}
+            </a>
+          </td>
+          <td>{{ threat.lat }}</td>
+          <td>{{ threat.lng }}</td>
+        </tr>
+      </ng-container>
+      <ng-container *ngIf="!pending && threats.length === 0">
+        <tr>
+          <td class="text-center" colspan="7">
+            <h5 class="text-muted">No threats registered yet</h5>
+          </td>
+        </tr>
+      </ng-container>
+      <ng-container *ngIf="pending">
+        <tr>
+          <td class="text-center" colspan="7">
+            <i class="fas fa-circle-notch fa-spin fa-2x text-muted"></i>
+          </td>
+        </tr>
+      </ng-container>
+    </tbody>
+  </table>
+  <app-alert [show]="!!message" [error]="error" [message]="message"> </app-alert>
+  <app-card classes="p-3 bg-white text-center">
+    No pagination yet
+  </app-card>
+</app-card>

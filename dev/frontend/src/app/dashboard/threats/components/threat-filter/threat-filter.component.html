@@ -1,0 +1,31 @@
+<app-card class="bg-white">
+  <app-card classes="bg-light p-3" [shadow]="true">
+    <h4 class="font-weight-bold mb-0">Filters</h4>
+  </app-card>
+  <form class="p-3" [formGroup]="threatFilterForm" (ngSubmit)="submit()">
+    <div class="form-group">
+      <label for="threat-filter-name">Monster name</label>
+      <input class="form-control" formControlName="monsterName" id="threat-filter-name" type="text" />
+    </div>
+    <div class="form-row">
+      <div class="col">
+        <div class="form-group">
+          <label for="threat-filter-hero-name">Hero name</label>
+          <input class="form-control" formControlName="heroName" id="threat-filter-hero-name" type="text" />
+        </div>
+      </div>
+      <div class="col">
+        <div class="form-group">
+          <label for="hero-filter-class">Danger level</label>
+          <select class="form-control" name="" id="hero-filter-class" formControlName="dangerLevel">
+            <option value="">Any danger level</option>
+            <option [value]="d" *ngFor="let d of dangerLevels">{{ d }}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+    <app-button-with-loader classes="btn-primary" type="submit" [pending]="pending">
+      Filter
+    </app-button-with-loader>
+  </form>
+</app-card>
