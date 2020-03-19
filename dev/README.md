@@ -58,16 +58,21 @@ Para escrever as mensagens de commit tento seguir esse [padrão](<[https://chris
 1.  Variáveis de ambiente
     O projeto possui na raiz um arquivo **.env**, configure-o de acordo com as suas preferências
 2.  Banco de dados
+
     - Você deve possui o **docker** e estar ter disponível o comando **docker-compose** ou
     - O PostgreSQL deve estar sendo executado localmente
-      Caso escolha utilizar o docker, na raiz do projeto execute `$ docker-compose up -d` para iniciar o banco de dados.
+      Caso escolha utilizar o docker, na raiz do projeto execute `$ docker-compose up -d` para iniciar o banco de dados. Para parar o banco use o comando `$ docker-compose down`.
+
       _Obs:_ O argumento **`-d`** coloca o processo no background, caso deseje ver o log do banco de dados, remova o argumento
+
 3.  Backend
 
+    - Na raiz do projeto, onde encontra-se o **package.json** use o comando `$ yarn` ou `$ npm install`
     - Para iniciar use o comando `$ yarn start:dev`
     - Para executar os testes use o comando `$ yarn test` e o o comando para o teste de cobertura é `$ yarn test coverage`
 
 4.  Frontend
+    - Na raiz do projeto, onde encontra-se o **package.json** use o comando `$ yarn` ou `$ npm install`
     - Para iniciar use o comando `$ yarn start:dev`
     - Para executar os testes use o comando `$ yarn test` e o o comando para o teste de cobertura é `$ yarn test coverage`
 
