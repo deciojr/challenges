@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger/';
-import { IsEnum, IsNotEmpty, IsString } from 'class-validator';
+import { IsEnum, IsNotEmpty, IsNumber, IsString } from 'class-validator';
 
 import { DTO } from '../../shared/model/dto.model';
 import { HeroClass, Hero } from '../hero.entity';
@@ -21,14 +21,14 @@ export class CreateHeroDTO implements Readonly<DTO<CreateHeroDTO>> {
   heroClass: HeroClass;
 
   @ApiProperty({ required: true })
-  @IsString()
+  @IsNumber()
   @IsNotEmpty()
-  lat: string;
+  lat: number;
 
   @ApiProperty({ required: true })
-  @IsString()
+  @IsNumber()
   @IsNotEmpty()
-  lng: string;
+  lng: number;
 
   static async toHero({
     name,

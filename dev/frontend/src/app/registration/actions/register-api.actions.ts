@@ -1,6 +1,6 @@
 import { createAction, props } from '@ngrx/store';
 
-import { actionNameCreator } from '@shared/util/action-name-creator';
+import { actionNameCreator } from '@shared/util/action-name.creator.util';
 
 export const registerApiActionsPrefix = actionNameCreator('[Registration/API]');
 

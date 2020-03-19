@@ -9,6 +9,10 @@ body {
     sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
 }
 
+body {
+  overflow: hidden;
+}
+
 label {
   font-weight: bold;
   text-transform: uppercase;

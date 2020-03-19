@@ -1,17 +1,21 @@
 import { Injectable } from '@angular/core';
-import { EntityAction, EntityOp, ofEntityOp } from '@ngrx/data';
+
+import { EntityOp, ofEntityOp, ofEntityType } from '@ngrx/data';
 import { Actions, createEffect } from '@ngrx/effects';
-import { RegistrationApiActions } from '@registration/actions';
-import { User } from '@shared/models/user.model';
-import { HttpStatusCode } from '@shared/util/http-status-codes';
+
 import { of } from 'rxjs';
-import { map, switchMap, tap } from 'rxjs/operators';
+import { switchMap } from 'rxjs/operators';
+
+import { RegistrationApiActions } from '@registration/actions';
+import { HttpStatusCode } from '@shared/constants/http-status-codes.constant';
+import { entityNames } from '@app/entity-metadata';
 
 @Injectable()
 export class RegistrationEffects {
   registrationSaveUserResponse$ = createEffect(() =>
     this.actions$.pipe(
-      ofEntityOp<EntityAction<User>>(EntityOp.SAVE_ADD_ONE_SUCCESS),
+      ofEntityType(entityNames.user),
+      ofEntityOp(EntityOp.SAVE_ADD_ONE_SUCCESS),
       switchMap(action => {
         const messages = {
           [HttpStatusCode.CONFLICT]: 'The email you informed is already registered',

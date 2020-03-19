@@ -1,0 +1,2 @@
+<app-threat-filter [pending]="pending$ | async" (filter)="getThreats($event)"> </app-threat-filter>
+<app-threat-table [threats]="threats$ | async"> </app-threat-table>

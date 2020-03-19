@@ -12,6 +12,10 @@ const routes: Routes = [
         path: 'heroes',
         loadChildren: () => import('@dashboard/heroes/heroes.module').then(m => m.HeroesModule),
       },
+      {
+        path: 'threats',
+        loadChildren: () => import('@dashboard/threats/threats.module').then(m => m.ThreatsModule),
+      },
     ],
   },
 ];

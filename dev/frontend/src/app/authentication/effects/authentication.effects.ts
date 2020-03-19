@@ -3,11 +3,11 @@ import { Router } from '@angular/router';
 
 import { Actions, createEffect, ofType } from '@ngrx/effects';
 
-import { map, switchMap, tap } from 'rxjs/operators';
+import { map, switchMap, take, tap } from 'rxjs/operators';
 
-import { LoginActions, LoginApiActions } from '@authentication/actions';
+import { AuthenticationGuardActions, LoginActions, LoginApiActions } from '@authentication/actions';
 import { AuthenticationService } from '@authentication/services/authentication.service';
-import { HttpStatusCode } from '@shared/util/http-status-codes';
+import { HttpStatusCode } from '@shared/constants/http-status-codes.constant';
 
 @Injectable()
 export class AuthenticationEffects {
@@ -30,13 +30,26 @@ export class AuthenticationEffects {
   );
 
   saveToken$ = createEffect(
-    () => {
-      return this.actions$.pipe(
+    () =>
+      this.actions$.pipe(
         ofType(LoginApiActions.loginSuccess),
         tap(action => this.authenticationService.saveAccessToken(action.accessToken)),
-        tap(() => this.router.navigate(['/'])),
-      );
-    },
+        tap(() => this.router.navigate(['/dashboard/heroes'])),
+        take(1),
+      ),
+    { dispatch: false },
+  );
+
+  redirect$ = createEffect(
+    () =>
+      this.actions$.pipe(
+        ofType(AuthenticationGuardActions.redirect),
+        tap(() => {
+          console.log('asdasdsadadsadsa');
+          this.authenticationService.removeAccessToken();
+          return this.router.navigate(['/login']);
+        }),
+      ),
     { dispatch: false },
   );
 

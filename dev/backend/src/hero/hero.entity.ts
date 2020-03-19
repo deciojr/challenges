@@ -4,7 +4,7 @@ import { Audit } from '../shared/model/audit.model';
 
 export enum HeroClass {
   S = 'S',
-  A = ' A',
+  A = 'A',
   B = 'B',
   C = 'C',
 }
@@ -30,9 +30,19 @@ export class Hero extends Audit {
   @Index()
   heroClass: string;
 
-  @Column()
-  lat: string;
+  @Column({
+    type: 'numeric',
+  })
+  lat: number;
 
-  @Column()
-  lng: string;
+  @Column({
+    type: 'numeric',
+  })
+  lng: number;
+
+  @Column({
+    nullable: true,
+    type: 'boolean',
+  })
+  allocated: boolean = false;
 }

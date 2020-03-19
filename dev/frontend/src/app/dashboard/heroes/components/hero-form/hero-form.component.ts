@@ -3,7 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { HeroClass } from '@shared/models/hero-class.model';
 
 import { Hero } from '@shared/models/hero.model';
-import { heroClassesValues } from '@shared/util/hero-classes.util';
+import { heroClassesValues } from '@shared/util/enum.util';
 
 @Component({
   selector: 'app-hero-form',
