@@ -1,97 +1,88 @@
-### iHeros - Teste Fullstack
-    
-Este é o teste usado por nós aqui da ZRP para avaliar tecnicamente os candidatos a nossas vagas de desenvolvedores Fullstack. Se você estiver participando de um processo seletivo para nossa equipe, certamente em algum momento receberá este link, mas caso você tenha chegado aqui "por acaso", sinta-se convidado a desenvolver nosso teste e enviar uma mensagem para nós no e-mail jobs@zrp.com.br.
+## Sumário
 
-Aqui na ZRP nós aplicamos este mesmo teste para as vagas em todos os níveis, ou seja, um candidato a uma vaga de dev júnior fará o mesmo teste de um outro candidato a uma vaga de dev sênior, mudando obviamente o nosso critério de avaliação do resultado do teste.
+- ### [Decisões](#decisões)
+      	- #### [Backend](#backend)
+      	- #### [Frontend](#frontend)
+      	- #### [Testes](#testes)
+      	- #### [Commits](#commits)
+- ### [Como rodar o projeto](#decisões)
+      	- ###	[Pré-requisitos](#pré-requisitos)
+      	- ### [Frontend](#frontend)
+      	- ### [Backend](#backend)
+- ### [Observações finais](#observações-finais)
 
-Nós fazemos isso esperando que as pessoas mais iniciantes entendam qual o modelo de profissional que temos por aqui e que buscamos para o nosso time. Portanto, se você estiver se candidatando a uma vaga mais iniciante, não se assuste, e faça o melhor que você puder!
+## Decisões
 
-### Instruções
+### Backend
 
-Você deverá criar um fork deste projeto, e desenvolver em cima do seu fork. Use o README principal do seu repositório para nos contar como foi resolver seu teste, as decisões tomadas, como você organizou e separou seu código, e principalmente as instruções de como rodar seu projeto.
+Decidi usar a o framework chamado **NestJS**, para esta parte da aplicação. Baseei essa escolha no fato dela ser inspirada no **Angular**, uma framework que possuo um pouco de familiaridade, tornando a curva de aprendizado um pouco menos acentuada.
 
-Lembre-se que este é um teste técnico e não um concurso público, portanto, não existe apenas uma resposta correta. Mostre que você é bom e nos impressione, mas não esqueça do objetivo do projeto.
+Integrando do Nest, decidi também utilizar o **TypeORM** para realizar a conexão com o banco de dados, mapear as entidades do projeto e realizar operações com os dados. Tive bastante dificuldade nessa parte de conexão, pois inicialmente, havia decidido utilizar o **MongoDB** como o banco de dados, mas a falta de documentação e referências de como integrar os dois me fez desistir e ao invés do Mongo, migrei para o **PostgreSQL**
 
-Nós não definimos um tempo limite para resolução deste teste, o que vale para nós e o resultado final e a evolução da criação do projeto até se atingir este resultado.
-    
+Com o TypeORM utilizei o padrão de **_repositories_** atribuido a cada entidade. Este padrão disponibiliza uma interface entre cada entidade da aplicação (cada tabela refere-se a uma entidade), decidi optar por esse padrão pois é o que utilizo diariamente com a framework **Spring Boot**.
 
-#### Descrição
-> Rede de cadastro(test backend) e distribuição(test frontend) de heroes, levando em consideração o nível da ameaça que estaria atacando uma determinada região.
+A estrutura do backend está dividida por _entidade_ (usuário, ameaça etc) ou _funcionalidade_ (autenticação etc)
 
-Você está no ano de 3150 e está a frente do setor de tecnologia responsável pelo desenvolvimento do sistema de gerenciamento de distribuição de Heros para combater ameaças. O sistema deve monitorar o sistema de alertas de ameças provido pela ONU e alocar os herois para cada nova ameaça existente no globo terrestre. 
+Para autenticação e autorização do usuário utilizei **jwt**.
 
-Para isso, será preciso implementar as seguintes funcionalidades:
+### Frontend
 
- - Autenticação
- - Cadastre, edite, remova e liste herois
- - Aloque automaticamente o heroi mais adequado quando uma nova ameaça surgir.
- - Registre a desalocação de um heroi (entende-se por desalocação, o ato do heroi ja ter derrotado a ameaça, depois dele ter sido alocado).
- - Exiba o histórico de ameaças junto com quem foi o responsável por impedir a catástrofe.
+Para o frontend decidi utilizar o **Angular** junto com o **@ngrx** (uma das frameworks de redux para o Angular) e seus design patterns. Decidi também utilizar uma das suas funcionalidades chamada **@ngrx/data** que abstrai para o desenvolvedor a criação de boilerplate para realizar ações de CRUD em entidades.
 
-Além disso, o lider de operações ordenou as seguintes regras para o desenvolvimento da aplicação:
-- Cada **Hero** e **Ameaça** tem um rank
-- Os herois devem ser alocados de acordo com sua localização e rank adequado ao nível de ameaças. 
-- Os ranks são os seguintes:
+Também utilizo o **HMR** (Hot Module Replacement) esta ferramenta auxilia a produtividade ao aplicar as mudanças feitas no código através de patches nos arquivos alterados, assim não é necessário atualizar a página a cada mudança.
 
-**Heroes**
-Classe S, A, B e C.
+Para implementar o design utilizei o **Bootstrap 4**
 
-**Ameaças**
-Nível Gold, Silver, Copper e Wood.
+A estrutura do projeto foi implementada seguindo o [projeto de exemplo](https://github.com/ngrx/platform/tree/master/projects/example-app) do **@ngrx**
 
-- Herois do rank classe "S" tem prioridade sobre ameaças do tipo "Gold";
-- Herois do rank classe "A" tem prioridade sobre ameaças do tipo "Silver";
-- Herois do rank classe "B" tem prioridade sobre ameaças do tipo "Copper";
-- Herois do rank classe "C" tem prioridade sobre ameaças do tipo "Wood";
+### Testes
 
-> Bônus: Alocar multiplos herois de ranks menores em uma mesma ameaça de rank maior. (Utilize a proporção que achar melhor).
+Possuo bem pouca experiência nessa área, então foi mais um desafio aprender um pouco sobre como funciona esse _mundo_. Devido isso, após tentar bastante, consegui realizar os testes que envolvem o registro do usuário (frontend e backend).
 
-Você devera consumir um socket que retornas as informações das ameaças, cada ameça tem o seguinte formato de objeto:
+Como já havia gastando bastante tempo realizando esses testes, decidi não testar o resto da aplicação e focar em implementar as regras de negócios e funcionalidades. Mesmo assim, manti os padrões utilizados para facilitar que, hipoteticamente, se o restante dos testes fossem implementos não houvesse maiores complicações.
 
-``` 
-{
-    location: {
-        lat: -5.836597,
-        lng: -35.236007,
-    },
-    dangerLevel: 'S',
-    monsterName: 'Black Dragon',
-}
-```
+_Obs:_ Decidi remover os arquivos de teste (identificados pelo sufixo _.**spec**.ts_) dos módulos e componentes que não fazem parte do cadastro de usuário para que não interfiram quando os testes forem executados
 
-A url do serviço de socket é a: 
+### Commits
 
-`https://zrp-challenge-socket.herokuapp.com:443`
+Adicionei ao projeto o **Husky** para rodar pre-commit hooks para checar o estilo do código e executar os respectivos linters do backend e frontend.
 
-E o evento a ser escutado é o `occurrence` 
+Usei também o **git-flow**.
 
+Para escrever as mensagens de commit tento seguir esse [padrão](<[https://chris.beams.io/posts/git-commit/](https://chris.beams.io/posts/git-commit/)>).
 
-### Tecnologias 
+## Como rodar o projeto
 
-**Frontend**
+### Pré-requisitos
 
-- Vue
-- Angular
-- React
+1.  Variáveis de ambiente
+    O projeto possui na raiz um arquivo **.env**, configure-o de acordo com as suas preferências
+2.  Banco de dados
+    - Você deve possui o **docker** e estar ter disponível o comando **docker-compose** ou
+    - O PostgreSQL deve estar sendo executado localmente
+      Caso escolha utilizar o docker, na raiz do projeto execute `$ docker-compose up -d` para iniciar o banco de dados.
+      _Obs:_ O argumento **`-d`** coloca o processo no background, caso deseje ver o log do banco de dados, remova o argumento
+3.  Backend
 
-**Backend**
+    - Para iniciar use o comando `$ yarn start:dev`
+    - Para executar os testes use o comando `$ yarn test` e o o comando para o teste de cobertura é `$ yarn test coverage`
 
-- Node.Js
-- Ruby
-- Python
-- Elixir
-- C#
-- Go
+4.  Frontend
+    - Para iniciar use o comando `$ yarn start:dev`
+    - Para executar os testes use o comando `$ yarn test` e o o comando para o teste de cobertura é `$ yarn test coverage`
 
-Para persisitir os dados utilize o meio que achar mais conveniente :).
+_Obs_: Recomendo utilizar o package manager **yarn** (o projeto só possui o arquivo **yarn.lock**) para evitar inconsistências com outros package managers
 
-###  O que iremos avaliar
+_Obs:_ Para executar os mesmos comandos com o **npm** adicione a palavra **run** entre o package manager e o comando, ex: `$ npm run start:dev`
 
-- Modelagem de Dados
-- Domínio da Linguagem
-- Legibilidade do Código
-- Estrutura do Código
-- Organização do Código
-- Design Patterns
-- Manutenibilidade do Código
-- Testes Unitários e Cobertura de Testes
+### Observações finais
+
+Não consegui implementar o projeto por completo e acredito que algumas partes podiam ser melhoradas ou implementadas e alguns bugs resolvidos.
+
+- Durante a implementação do registro, estava retornando os códigos http de erro manualmente (ao invés de retornar através de exceptions), só bateu que não fazia sentido um pouco tarde demais =/ e já estava replicado assim em outros módulos, então decidi manter.
+- No frontend, a funcionalidade que citei **@ngrx/data** possui pouca documentação na forma que ela lida com as respostas http e de como as entidades são atualizadas com base nelas, sendo assim, não consegui fazer com que as entidades atualizem ao realizar a filtragem, no backend esta funcionalidade está ok.
+- Outra questão que não resolvi foi a de atualizar os dados do herói, só é possível realizar a atualização uma vez, a partir dai, acredito que por estar retornando o código http ao invés do próprio herói atualizado,, não é mais possível realizar alterações.
+- Não implementei a desalocação de um herói.
+- Não implementei a alocação de um herói mais adequado, apenas ordenei pela classe mais alta para a mais baixa e aloquei o herói.
+- Adicionei uma regra para caso não houvesse um herói disponível, a aplicação gera um automaticamente e o aloca à ameaça
+- Na descrição do desafio, as ameaças possuem os níveis: **Gold, Silver, Copper e Wood**. Mas ao conectar ao socket das ameaças os níveis que recebi foram: **God, Dragon, Wolf e Tiger**.
