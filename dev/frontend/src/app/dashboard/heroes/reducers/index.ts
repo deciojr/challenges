@@ -1,8 +1,6 @@
 import { HeroesApiActions } from '@dashboard/heroes/actions';
 import { Action, createReducer, on } from '@ngrx/store';
 
-import { Hero } from '@shared/models/hero.model';
-
 export const heroesFeatureKey = 'heroes';
 
 export interface State {
