@@ -8,6 +8,9 @@ import { EffectsModule } from '@ngrx/effects';
 import { EntityDataModule } from '@ngrx/data';
 import { StoreRouterConnectingModule } from '@ngrx/router-store';
 
+import { SocketIoModule } from 'ngx-socket-io';
+
+import { IncomingThreatService } from '@app/services/incoming-threat.service';
 import { CoreModule } from '@core/core.module';
 import { JwtInterceptor } from '@core/interceptors';
 import { SharedModule } from '@shared/shared.module';
@@ -38,11 +41,15 @@ import { reducers, metaReducers } from './reducers';
       },
     }),
     !environment.production ? StoreDevtoolsModule.instrument() : [],
+    SocketIoModule.forRoot({
+      url: environment.incomingThreats.origin,
+    }),
     CoreModule,
     SharedModule,
     AppRoutingModule,
   ],
-  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }],
+  providers: [{ provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true }, IncomingThreatService],
+
   bootstrap: [AppComponent],
 })
 export class AppModule extends HmrModule {}
