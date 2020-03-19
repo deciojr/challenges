@@ -7,7 +7,7 @@ import { map, switchMap, take, tap } from 'rxjs/operators';
 
 import { AuthenticationGuardActions, LoginActions, LoginApiActions } from '@authentication/actions';
 import { AuthenticationService } from '@authentication/services/authentication.service';
-import { HttpStatusCode } from '@shared/models/http-status-codes';
+import { HttpStatusCode } from '@shared/constants/http-status-codes.constant';
 
 @Injectable()
 export class AuthenticationEffects {
