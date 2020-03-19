@@ -1,7 +1,7 @@
 import { createAction, props } from '@ngrx/store';
 
 import { User } from '@shared/models/user.model';
-import { actionNameCreator } from '@shared/util/action-name-creator';
+import { actionNameCreator } from '@shared/util/action-name.creator.util';
 
 export const registerActionsPrefix = actionNameCreator('[Register Page]');
 
