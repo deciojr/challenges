@@ -75,7 +75,7 @@ export class HeroService {
       });
     }
 
-    queryBuilder.addOrderBy('hero_class', 'DESC');
+    queryBuilder.addOrderBy('hero_class', 'ASC');
 
     return (await queryBuilder.getMany()) as ListHeroDTO[];
   }
