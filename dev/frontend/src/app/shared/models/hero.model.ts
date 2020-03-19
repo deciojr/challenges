@@ -5,6 +5,7 @@ export interface Hero {
   name: string;
   badge: string;
   heroClass: HeroClass;
+  allocated: boolean;
   lat: string;
   lng: string;
   createdAt?: Date;

@@ -13,6 +13,7 @@
         <th>Name</th>
         <th>Badge</th>
         <th>Class</th>
+        <th>Allocated</th>
         <th>Latitude</th>
         <th>Longitude</th>
         <th></th>
@@ -24,7 +25,10 @@
           <td>{{ hero.name }}</td>
           <td>{{ hero.badge }}</td>
           <td>{{ hero.heroClass }}</td>
-          <td>{{ hero.lat }}</td>
+          <td>
+            <input type="checkbox" [checked]="hero.allocated" style="pointer-events: none" />
+          </td>
+          <td>{{ hero.lng }}</td>
           <td>{{ hero.lng }}</td>
           <td class="text-right">
             <button class="btn text-success bg-light-green  mr-3" (click)="updateHero(hero)">Update</button>
