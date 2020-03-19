@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 
-import { EntityAction, EntityCollectionService, EntityOp, EntityServices, ofEntityOp } from '@ngrx/data';
+import { EntityAction, EntityCollectionService, EntityOp, EntityServices, ofEntityOp, ofEntityType } from '@ngrx/data';
 import { Actions, createEffect } from '@ngrx/effects';
-import { of } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
 
-import { entityNames } from '@app/entity-metadata';
-import { HttpStatusCode } from '@shared/util/http-status-codes';
+import { switchMap } from 'rxjs/operators';
+import { of } from 'rxjs';
+
 import { Hero } from '@shared/models/hero.model';
+import { HttpStatusCode } from '@shared/constants/http-status-codes.constant';
+import { entityNames } from '@app/entity-metadata';
 import { HeroesApiActions } from '@dashboard/heroes/actions';
 
 @Injectable()
@@ -16,7 +17,8 @@ export class HeroesEffects {
 
   saveHeroResponse$ = createEffect(() =>
     this.actions$.pipe(
-      ofEntityOp<EntityAction<Hero>>(EntityOp.SAVE_ADD_ONE_SUCCESS),
+      ofEntityType(entityNames.hero),
+      ofEntityOp(EntityOp.SAVE_ADD_ONE_SUCCESS),
       switchMap(action => {
         const messages = {
           [HttpStatusCode.CONFLICT]: `There's already a hero with this badge`,
