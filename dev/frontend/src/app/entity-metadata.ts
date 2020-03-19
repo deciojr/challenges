@@ -3,6 +3,7 @@ import { EntityMetadataMap, EntityDataModuleConfig } from '@ngrx/data';
 export const entityNames = {
   user: 'User',
   hero: 'Hero',
+  threat: 'Threat',
 };
 
 const defaultEntityDispatcherOptions = {
@@ -14,12 +15,17 @@ const defaultEntityDispatcherOptions = {
 };
 
 const entityMetadata: EntityMetadataMap = {
-  User: {
+  [entityNames.user]: {
     entityDispatcherOptions: {
       ...defaultEntityDispatcherOptions,
     },
   },
-  Hero: {
+  [entityNames.hero]: {
+    entityDispatcherOptions: {
+      ...defaultEntityDispatcherOptions,
+    },
+  },
+  [entityNames.threat]: {
     entityDispatcherOptions: {
       ...defaultEntityDispatcherOptions,
     },
@@ -27,7 +33,8 @@ const entityMetadata: EntityMetadataMap = {
 };
 
 const pluralNames = {
-  Hero: 'hero',
+  [entityNames.hero]: entityNames.hero.toLocaleLowerCase(),
+  [entityNames.threat]: entityNames.threat.toLocaleLowerCase(),
 };
 
 export const entityConfig: EntityDataModuleConfig = {
