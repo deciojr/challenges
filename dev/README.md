@@ -9,7 +9,7 @@
 - [Pré-requisitos](#pré-requisitos)
 - [Frontend](#frontend)
 - [Backend](#backend)
-- ### [Observações finais](#observações-finais)
+- ### [Observações finais](#observações-finais-1)
 
 ## Decisões
 
