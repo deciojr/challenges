@@ -4,6 +4,10 @@
 
 export const environment = {
   origin: '',
+  incomingThreats: {
+    origin: '',
+    event: '',
+  },
   production: false,
   hmr: false,
 };
