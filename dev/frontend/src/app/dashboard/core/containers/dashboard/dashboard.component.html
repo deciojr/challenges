@@ -1,12 +1,18 @@
-<div class="row h-100">
+<div class="row" style="min-height: 100%;">
   <div class="col-2">
     <app-sidenav>
-      <app-nav-item link="/heroes" icon="fas fa-mask">
+      <app-nav-item link="heroes" icon="fas fa-mask">
         Heroes
       </app-nav-item>
+      <app-nav-item link="threats" icon="fas fa-radiation-alt">
+        Threats
+      </app-nav-item>
+      <button class="btn btn-light mx-3 mt-3" (click)="logout()">
+        Logout
+      </button>
     </app-sidenav>
   </div>
-  <main class="col-7 pt-5">
+  <main class="col pt-5">
     <router-outlet></router-outlet>
   </main>
 </div>
