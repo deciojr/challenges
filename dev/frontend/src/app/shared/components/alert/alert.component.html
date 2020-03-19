@@ -1,0 +1,8 @@
+<div class="px-3 pb-3" *ngIf="show">
+  <app-card classes="p-3 bg-light-green" *ngIf="!error">
+    <i class="fas fa-check mr-2 text-success"></i> {{ message }}
+  </app-card>
+  <app-card classes="p-3 bg-light-red" *ngIf="error">
+    <i class="fa fa-exclamation-triangle mr- 2 text-danger"></i> {{ message }}
+  </app-card>
+</div>

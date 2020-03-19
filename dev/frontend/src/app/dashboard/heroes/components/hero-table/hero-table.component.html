@@ -48,14 +48,7 @@
       </ng-container>
     </tbody>
   </table>
-  <div class="px-3 pb-3" *ngIf="!!message">
-    <app-card classes="p-3 bg-light-green" *ngIf="!error">
-      <i class="fas fa-check mr-2 text-success"></i> {{ message }}
-    </app-card>
-    <app-card classes="p-3 bg-light-red" *ngIf="error">
-      <i class="fa fa-exclamation-triangle mr- 2 text-danger"></i> {{ message }}
-    </app-card>
-  </div>
+  <app-alert [show]="!!message" [error]="error" [message]="message"> </app-alert>
   <app-card classes="p-3 bg-white text-center">
     No pagination yet
   </app-card>
