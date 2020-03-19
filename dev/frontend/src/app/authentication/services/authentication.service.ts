@@ -26,6 +26,10 @@ export class AuthenticationService {
     return sessionStorage.getItem(this.accessTokenKey);
   }
 
+  removeAccessToken() {
+    sessionStorage.removeItem(this.accessTokenKey);
+  }
+
   authenticate(authentication: string) {
     console.log(authentication);
     let headers = new HttpHeaders();
